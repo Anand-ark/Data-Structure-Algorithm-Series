@@ -1,1 +1,23 @@
-
+class Solution {
+public:
+	vector<int>bfsOfGraph(int V, vector<int> adj[])
+	{
+	    queue<int>q;
+	    bool *visited=new bool[V+1]{false};
+	    vector<int>ans;
+	    q.push(0);
+	    while(!q.empty())
+	    {
+	        for(auto node:adj[q.front()])
+	        {
+	            if(visited[node]==false)
+	            {
+	                q.push(node);
+	                visited[node]=true;
+	            }
+	        }
+	        ans.push_back(q.front());
+	        q.pop();
+	    }
+	    return ans;
+};
