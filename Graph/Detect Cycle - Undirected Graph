@@ -1,0 +1,34 @@
+
+class Solution {
+public:
+    bool dfs(vector<int> adj[],int source,int parent,bool *visited)
+    {
+        visited[source]=true;
+        for(auto x:adj[source])
+        {
+            if(visited[x]==false)
+            {
+                bool cycle_found=dfs(adj,x,source,visited);
+                if(cycle_found==true)return true;
+            }
+            //neighbour is visited but not equal to parent
+            else if(x!=parent)return true;
+            
+        }
+        return false;
+    }
+	bool isCycle(int V, vector<int>adj[])
+	{
+	    bool *visited=new bool[V];
+	    for(int i=0;i<V;i++)visited[i]=false;
+	    for(int i=0;i<V;i++)
+	    {
+	        if(visited[i]==false)
+	        {
+	            bool cycle_found=dfs(adj,i,-1,visited);
+	            if(cycle_found==true)return true;
+	        }
+	    }
+	    return false;
+	}
+};
