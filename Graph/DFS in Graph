@@ -1,0 +1,28 @@
+class Solution {
+public:
+	vector<int>dfsOfGraph(int V, vector<int> adj[])
+	{
+	    vector<int>ans;
+	    vector<bool>visited(V);
+	    stack<int>st;
+	    st.push(0);
+	    while(!st.empty())
+	    {
+	        int x=st.top();
+	        st.pop();
+	        if(visited[x]==false)
+	        {
+	            ans.push_back(x);
+	            visited[x]=true;
+	        }
+	        for(int i=adj[x].size()-1;i>=0;i--)
+	        {
+	            if(visited[adj[x][i]]==false)
+	            {
+	                st.push(adj[x][i]);
+	            }
+	        }
+	    }
+	    return ans;
+	}
+};
