@@ -2,19 +2,15 @@ class Solution {
 public:
 bool cyclic(int source, int V, vector<int> adj[],bool visited[], bool current[])
 {
+    if(current[source]==true)return true;
+    if(visited[source]==true)return false;
   
     visited[source]=true;
     current[source]=true;
     for(auto x:adj[source])//x=adj[source][j] in iterative loop
     { 
-        if(visited[x]==false &&  cyclic(x,V,adj,visited,current)==true)
-        {
-            return true;
-        }
-        else
-        {
-            if(current[x]==true)return true;
-        }
+        bool cycle_found=cyclic(x,V,adj,visited,current);
+        if(cycle_found==true)return true;
     }
     
     current[source]=false;
@@ -32,11 +28,8 @@ bool cyclic(int source, int V, vector<int> adj[],bool visited[], bool current[])
         }
         for(int i =0;i<V;i++)
         {  
-            if(visited[i]==false)
-            {
-                bool cycle_found=cyclic(i,V,adj,visited,current);
-                if(cycle_found==true)return true;
-            }
+            bool cycle_found=cyclic(i,V,adj,visited,current);
+            if(cycle_found==true)return true;
         }
         return false;
 	}
