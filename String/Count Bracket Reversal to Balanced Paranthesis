@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int solve(string str,int n)
+{
+    if(n%2!=0)return -1;
+    int open=0;
+    int close=0;
+    for(int i=0;i<n;i++)
+    {
+        if(str[i]=='{')open++;
+        else
+        {
+            if(open==0)close++;
+            else open--;
+        }
+    }
+    int ans=(open/2)+(close/2);
+    close=close%2;
+    if(close!=0)
+    {
+        ans+=2;
+        return ans;
+    }
+    return ans;
+}
+int main() 
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string str;
+        cin>>str;
+        int n=str.length();
+        cout<<solve(str,n)<<endl;
+        
+    }
+	//code
+	return 0;
+}
