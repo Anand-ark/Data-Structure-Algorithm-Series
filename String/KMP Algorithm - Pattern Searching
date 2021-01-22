@@ -1,0 +1,58 @@
+class Solution {
+public:
+    void lpsarray(string patt,int n,int *lps)
+    {
+        //int lps[n];
+        int i=0,j=1;
+        lps[0]=0;
+        while(j<n)
+        {
+            if(patt[i]==patt[j])
+            {
+                lps[j]=i+1;
+                i++;
+                j++;
+            }
+            else
+            {
+                if(i!=0)i=lps[i-1];
+                else
+                {
+                    lps[j]=0;
+                    j++;
+                }
+            }
+         }
+    }
+    int strStr(string haystack, string needle) 
+    {
+        
+        int ans=-1;
+        int n=haystack.length();
+        int m=needle.length();
+        if(n==0 and m==0)return 0;
+        if(m==0)return 0;
+        int lps[m];
+        lpsarray(needle,m,lps);
+        int i=0,j=0;
+        while(i<n)
+        {
+            if(haystack[i]==needle[j])
+            {
+                i++;
+                j++;
+            }
+            if(j==m)
+            {
+                ans=i-j;
+                break;
+            }
+            else if(i<n and haystack[i]!=needle[j] )
+            {
+                if(j!=0)j=lps[j-1];
+                else i++;
+            }
+        }
+        return ans;
+    }
+};
