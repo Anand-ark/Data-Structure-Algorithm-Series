@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool result=true;
+    void solve(TreeNode* root,TreeNode*& prev) 
+    {
+        if(root==NULL) return;
+        solve(root->left,prev);
+        
+        if(prev!=NULL and root->val <= prev->val) 
+        {
+            result = false;
+        }
+        prev = root;
+        solve(root->right,prev);
+    }
+    bool isValidBST(TreeNode* root) 
+    {
+        TreeNode* prev=NULL;
+        solve(root,prev);
+        return result;
+
+        
+    }
+};
