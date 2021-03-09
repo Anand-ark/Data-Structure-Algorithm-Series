@@ -1,0 +1,48 @@
+void left(Node *root,vector<int> &ans)
+{
+    if(root==NULL)return ;
+    if(root->left!=NULL)
+    {
+        ans.push_back(root->data);
+        left(root->left,ans);
+        
+    }
+    else if(root->right!=NULL)
+    {
+        ans.push_back(root->data);
+        left(root->right,ans);  
+    }
+}
+void leaf(Node *root,vector<int> &ans)
+{
+    if(root==NULL)return ;
+    leaf(root->left,ans);
+    if(root->left==NULL and root->right==NULL)ans.push_back(root->data);
+    leaf(root->right,ans);
+    
+}
+void Right(Node *root,vector<int> &ans)
+{
+    if(root==NULL)return ;
+    if(root->right!=NULL)
+    {
+        Right(root->right,ans);
+        ans.push_back(root->data);
+    }
+    else if(root->left!=NULL)
+    {
+        Right(root->left,ans);  
+        ans.push_back(root->data);
+    }
+}
+vector <int> printBoundary(Node *root)
+{
+    vector<int> ans;
+    ans.push_back(root->data);
+    left(root->left,ans);
+    leaf(root,ans);
+    Right(root->right,ans);
+    return ans;
+    
+     //Your code here
+}
