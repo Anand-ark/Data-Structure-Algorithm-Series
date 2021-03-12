@@ -1,0 +1,88 @@
+----- UNION --------------
+
+class Solution{
+    public:
+    //Function to return the count of number of elements in union of two arrays.
+    int doUnion(int a[], int n, int b[], int m)  
+    {
+        sort(a,a+n);
+        sort(b,b+m);
+        int count=0;
+        int i=0,j=0;
+        while(i<n and j<m)
+        {
+            while(i<n-1 and a[i]==a[i+1])i++;
+            while(j<m-1 and b[j]==b[j+1])j++;
+            if(a[i]<b[j])
+            {
+                count++;
+                i++;
+            }
+            else if(a[i]>b[j])
+            {
+                count++;
+                j++;
+            }
+            else 
+            {
+                count++;
+                i++;
+                j++;
+            }
+        }
+        while(i<n)
+        {
+            if(i<n-1 and a[i]==a[i+1])i++;
+            else 
+            {
+                count++;
+                i++;
+            }
+        }
+        while(j<m)
+        {
+            if(j<m-1 and b[j]==b[j+1])j++;
+            else 
+            {
+                count++;
+                j++;
+            }
+        }
+        return count;
+    }
+};
+
+
+-----INTERSECTION ----------
+
+class Solution{
+    public:
+    //Function to return the count of number of elements in union of two arrays.
+    int doUnion(int a[], int n, int b[], int m)  
+    {
+        sort(a,a+n);
+        sort(b,b+m);
+        int count=0;
+        int i=0,j=0;
+        while(i<n and j<m)
+        {
+            while(i<n-1 and a[i]==a[i+1])i++;
+            while(j<m-1 and b[j]==b[j+1])j++;
+            if(a[i]<b[j])
+            {
+                i++;
+            }
+            else if(a[i]>b[j])
+            {
+                j++;
+            }
+            else 
+            {
+                count++;
+                i++;
+                j++;
+            }
+        }
+        return count;
+    }
+};
