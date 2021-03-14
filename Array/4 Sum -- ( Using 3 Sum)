@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<vector<int>>ans;
+    void threesum(vector<int>& nums,int target,int start,int elem )
+    {
+        int n=nums.size();
+        for(int i=start;i<n-2;i++)
+        {
+            if(i>start and nums[i]==nums[i-1])continue;
+            int left=i+1;
+            int right=n-1;
+            while(left<right)
+            {
+                if(nums[left]+nums[right]+nums[i]==target)
+                {
+                    vector<int> quad(4, 0);
+                    quad[0]= elem;
+                    quad[1] = nums[i];
+                    quad[2] = nums[left];
+                    quad[3] = nums[right];
+                    ans.push_back(quad);
+                    //Removing Duplicates
+                    while(left<right and nums[left]==quad[2])left++;
+                    while(left<right and nums[right]==quad[3])right--;                    
+                }
+                else if(nums[i]+nums[left]+nums[right]<target)left++;
+                else right--;
+            }
+        }
+    }
+    vector<vector<int>> fourSum(vector<int>& nums, int target) 
+    {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        for(int i=0;i<n-3;i++)
+        {
+            if(i>0 and nums[i]==nums[i-1])continue;
+            threesum(nums,target-nums[i],i+1,nums[i]);
+        }
+        return ans;
+    }
+};
