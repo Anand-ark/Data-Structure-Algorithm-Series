@@ -1,0 +1,62 @@
+PROBLEM STATEMENT:
+You are given an array of strings.
+You have to group the given strings in such a way that all strings in a group are shifted versions of each other. 
+Two strings s1 and s2 are shifted if -
+   -> Length of both the strings is the same.
+   -> The difference between ASCII values of every character of s1 and s2 is constant.
+   
+INPUT:
+9
+acd dfg wyz yab mop bdfh a x moqs
+
+OUTPUT:
+acd dfg mop wyz yab 
+a x 
+bdfh moqs
+
+SOLUTION:
+
+#include <bits/stdc++.h>
+using namespace std;
+string get(string s)
+{
+    string res="";
+    for(int i=1;i<s.length();i++)
+    {
+        int diff=s[i]-s[i-1];
+        if(diff<0)diff+=26;
+        res+=diff+"#";
+    }
+    res+=".";
+    return res;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<string>v(n);
+    for(int i=0;i<n;i++)
+    {
+        string str;
+        cin>>str;
+        v[i]=str;
+    }
+    map<string,vector<string>>mp;
+    for(auto x:v)
+    {
+        string key=get(x);
+        mp[key].push_back(x);
+    }
+    for(auto it=mp.begin();it!=mp.end();it++)
+    {
+        vector<string>vec=it->second;
+        for(int i=0;i<vec.size();i++)
+        {
+            cout<<vec[i]<< " ";
+        }
+        cout<<endl;
+    }
+    
+    
+    
+}
