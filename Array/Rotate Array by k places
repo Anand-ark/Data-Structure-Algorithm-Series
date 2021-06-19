@@ -29,6 +29,7 @@ Time Complexity :  O(N) , Space Complexity : O(N)
 METHOD 3:
 In this approach, we firstly reverse all the elements of the array. Then, reversing the first k elements followed by reversing 
 the rest N-k elements gives us the required result.
+Time Complexity :  O(N) , Space Complexity : O(1)
 
 SOLUTION : METHOD 3 
 class Solution {
