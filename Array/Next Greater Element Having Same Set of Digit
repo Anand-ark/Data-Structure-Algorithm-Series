@@ -1,0 +1,44 @@
+Given a positive integer n, find the smallest integer which has exactly the same digits existing in the integer n and is greater in value than n. 
+If no such positive integer exists, return -1.
+Note that the returned integer should fit in 32-bit integer, if there is a valid answer but it does not fit in 32-bit integer, return -1.
+
+ 
+
+Example 1:
+
+Input: n = 12
+Output: 21
+Example 2:
+
+Input: n = 21
+Output: -1
+
+SOLUTION:
+
+class Solution {
+public:
+    int nextGreaterElement(int n) 
+    {
+        string s=to_string(n);
+        int m=s.length();
+        int i=0;
+        for(i=m-1;i>=0;i--)
+        {
+            if(s[i]>s[i-1])break;
+        }
+        if(i==0)return -1;
+        int b=i;
+        for(int j=b;j<n;j++)
+        {
+            if(s[j]>s[i-1] and s[j]<=s[b])
+            {
+                b=j;
+            }
+        }
+        swap(s[b],s[i-1]);
+        sort(s.begin()+i,s.begin()+m);
+        
+        return stoi(s);
+        
+    }
+};
