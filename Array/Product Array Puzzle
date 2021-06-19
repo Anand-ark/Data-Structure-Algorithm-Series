@@ -16,7 +16,7 @@ METHOD 1 : Using Prefix and Suffix Array
 Time Complexity : O(N) , Space Complexity : O(N)+O(N) ~ O(N) (if Output Array is not taken in to consideration)
 
 
-METHOD 1 : Without Using Prefix and Suffix Array 
+METHOD 2 : Without Using Prefix and Suffix Array 
 Time Complexity : O(N) , Space Complexity : O(1) (if Output Array is not taken in to consideration)
 
 ---------------------
