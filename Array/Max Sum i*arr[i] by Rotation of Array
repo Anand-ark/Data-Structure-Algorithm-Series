@@ -21,6 +21,7 @@ Time Complexity : O(N^2) , Space Complexity : O(1)
 
 METHOD 2:
 The approach is to calculate the sum of new rotation from the previous rotations.
+Time Complexity : O(N) , Space Complexity : O(1)
 
 SOLUTION : METHOD 2
 --------------------
