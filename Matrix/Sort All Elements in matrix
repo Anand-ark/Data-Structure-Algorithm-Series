@@ -35,9 +35,9 @@ void solve(vector<vector<int>>& arr)
     int row=arr.size();
     int col=arr[0].size();
     int size=row*col;
-    for(int i=0;i<size;i++)
+    for(int i=0;i<size-1;i++)
     {
-        for(int j=0;j<size-1;j++)
+        for(int j=0;j<size-1-i;j++)
         {
             if(arr[j/col][j%col]>arr[(j+1)/col][(j+1)%col])
             {
