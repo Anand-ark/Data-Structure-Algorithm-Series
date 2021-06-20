@@ -14,31 +14,58 @@ Output:
 33 35 37 39
 40 45 48 50
 
-Solution:
-class Solution {
-  public:
-    vector<vector<int>> sortedMatrix(int N, vector<vector<int>> Mat) 
+METHOD 1 : 
+Create a temp[] array of size n^2. Starting with the first row one by one copy the elements of the given matrix into temp[]. 
+Sort temp[] array.
+Now one by one copy the elements of temp[] back to the given matrix.
+Time Complexity : O( N^2 logN) , Space Complexity : O(N^2)
+
+METHOD 2: Using Bubble Sort
+For Accessing ith element of the matrix, the relation can be defined as:
+ith Element of the Matrix = arr[ i / cols ][ i % cols ]  
+Time Complexity : O( N * M) , Space Complexity : O(1)
+
+SOLUTION : METHOD 2
+--------------------
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve(vector<vector<int>>& arr)
+{
+    int row=arr.size();
+    int col=arr[0].size();
+    int size=row*col;
+    for(int i=0;i<size;i++)
     {
-        priority_queue<int,vector<int>,greater<int>>heap;
-        for(int i=0;i<N;i++)
+        for(int j=0;j<size-1;j++)
         {
-            for(int j=0;j<N;j++)
+            if(arr[j/col][j%col]>arr[(j+1)/col][(j+1)%col])
             {
-                heap.push(Mat[i][j]);
+                swap(arr[j/col][j%col],arr[(j+1)/col][(j+1)%col]);
             }
         }
-        vector<vector<int>> res( N , vector<int> (N));
-        while(heap.size()>0)
-        {
-            for(int i=0;i<N;i++)
-            {
-                for(int j=0;j<N;j++ )
-                {
-                    res[i][j]=heap.top();
-                    heap.pop();                   
-                }
-            }
-        }
-        return res;
     }
-};
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+}
+int main()
+{
+    vector<vector<int>>arr
+    {
+        {10,20,30,40},
+        {15,25,35,45},
+        {27,29,37,48},
+        {32,33,39,50}
+    };
+    solve(arr);
+    return 0;
+}
+
+
