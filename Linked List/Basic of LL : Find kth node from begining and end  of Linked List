@@ -1,0 +1,37 @@
+You are given the head of a linked list, and an integer k.
+Return the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).
+
+Input: head = [1,2,3,4,5], k = 2
+Output: [2,4]
+
+Example 2:
+Input: head = [7,9,6,6,7,8,3,0,9,5], k = 5
+Output: [7,8]
+
+SOLUTION : 
+----------
+class Solution {
+public:
+    vector<int> swapNodes(ListNode* head, int k) 
+    {
+        ListNode* first=NULL;
+        ListNode* last=head;
+        ListNode* curr=head;
+        vector<int>ans(2);
+        int count=0;
+        while(curr!=NULL)
+        {
+            count++;
+            if(count ==k)first=curr;
+            if(count>k)
+            {
+                last=last->next;
+            }
+            curr=curr->next;
+        }
+        ans[0]=first->val;
+        ans[1]=last->val;
+        return ans;
+        
+   }
+};
