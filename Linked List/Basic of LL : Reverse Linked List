@@ -21,13 +21,13 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) 
     {
-        ListNode *prev=NULL,*curr=head,*next;
+        ListNode *prev=NULL,*curr=head,*nearest=NULL;
         while(curr!=NULL)
         {
-            next=curr->next;
+            nearest=curr->next;
             curr->next=prev;
             prev=curr;
-            curr=next;
+            curr=nearest;
         }
         return prev;
     }
