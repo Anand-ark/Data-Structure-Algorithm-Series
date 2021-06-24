@@ -1,0 +1,30 @@
+Write a function that takes a list sorted in non-decreasing order and deletes any duplicate nodes from the list. 
+The list should only be traversed once. 
+For example if the linked list is 11->11->11->21->43->43->60 then removeDuplicates() should convert the list to 11->21->43->60.
+
+SOLUTION :
+-----------
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) 
+    {
+        if(head==NULL)return NULL;
+        ListNode *curr=head,*d;
+        while(curr!=NULL and curr->next!=NULL)
+        {
+            if(curr->val==curr->next->val) 
+            {
+                d=curr->next->next;
+                //delete(curr->next);//this step used to free memory
+                if(d==NULL)
+                {
+                    curr->next=NULL;
+                    break;
+                }
+                curr->next=d;
+            }
+            else curr=curr->next;
+       }
+       return head;
+    }
+};
