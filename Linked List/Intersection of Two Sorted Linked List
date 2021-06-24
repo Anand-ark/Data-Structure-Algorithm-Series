@@ -9,25 +9,38 @@ Second linked list be 2->4->6->8,
 Output: 2->4->6.
 The elements 2, 4, 6 are common in both the list so they appear in the intersection list. 
 
+
+
+Time Complexity:  O(m+n) 
+where m and n are number of nodes in first and second linked lists respectively. 
+Only one traversal of the lists are needed.
+
+Auxiliary Space: O(min(m, n)). 
+The output list can store at most min(m,n) nodes .
+
 SOLUTION:
+---------
 
 Node* findIntersection(Node* head1, Node* head2)
 {
-    Node *head=new Node(0);
-    Node *curr=head;
-    Node *curr1=head1,*curr2=head2;
+    Node* dummy=new Node(0);//create dummy node and initialise data value zero.
+    Node* head=dummy;
+    Node* curr1=head1;
+    Node* curr2=head2;
     while(curr1!=NULL and curr2!=NULL)
     {
         if(curr1->data==curr2->data)
         {
-            head->next=new Node(curr1->data);
-            head=head->next;
+            Node* temp=new Node(curr1->data);//create temp node and initialise data with current value.
+            dummy->next=temp;
+            dummy=dummy->next;
             curr1=curr1->next;
             curr2=curr2->next;
+            
         }
         else if(curr1->data<curr2->data)curr1=curr1->next;
         else curr2=curr2->next;
     }
-    head->next=NULL;
-    return curr->next;
+    dummy->next=NULL;
+    return head->next;
 }
