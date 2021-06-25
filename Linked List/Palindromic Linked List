@@ -1,0 +1,65 @@
+Given the head of a singly linked list, return true if it is a palindrome.
+
+METHOD 1: (Using Stack)
+A simple solution is to use a stack of list nodes. This mainly involves three steps.
+Traverse the given list from head to tail and push every visited node to stack.
+Traverse the list again. For every visited node, pop a node from the stack and compare data of popped node with the currently visited node.
+If all nodes matched, then return true, else false
+Time Complexity : O(N) , Space Complexity : O(N)
+
+METHOD 2: (Using Reverse of Linked List ) 
+1) Get the middle of the linked list. 
+2) Reverse the second half of the linked list. 
+3) Check if the first half and second half are identical. 
+Time Complexity : O(N) , Space Complexity : O(1)
+
+SOLUTION : METHOD 2
+--------------------
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) 
+    {;
+        ListNode *fast=head,*slow=head;
+     
+        while(fast->next!=NULL and fast->next->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+        
+    }
+    ListNode* reverse(ListNode* head) 
+    {
+        ListNode *prev=NULL,*curr=head,*next=NULL;
+        while(curr!=NULL)
+        {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }    
+    bool isPalindrome(ListNode* head) 
+    {
+        ListNode *curr=head;
+        if(head==NULL or head->next==NULL)return true;
+        
+        //Get Middle of Linked list
+        ListNode *middle=middleNode(head);
+        
+        //Reverse Second Half
+        middle->next=reverse(middle->next);
+        middle=middle->next;
+        
+        //Compare Each Element from first half
+        while(middle!=NULL)
+        {
+            if(curr->val!=middle->val)return false;
+            curr=curr->next;
+            middle=middle->next;
+        }
+        return true;
+    }
+};
