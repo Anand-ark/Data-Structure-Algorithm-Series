@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+/*-------------------------------------
+struct Node{
+    int data;
+    struct Node *next;
+    Node (int x)
+    {
+        data=x;
+        next=NULL;
+    }
+};
+----------------------------------------*/
+
+class Solution
+{
+    public:
+    struct Node* function_name()
+    { 
+        // return head of reversed list
+    }
+    
+};
+------------------------------------------*/
+void printlist(struct Node *head)
+{
+    struct Node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+/*-----------------------------------------
+int main()
+{
+   struct Node *head=NULL, *tail=NULL;
+   int n,val,l;
+   cin>>n;
+   cin>>val;
+   head=new Node(val);
+   tail=head;
+   for(int i=1;i<n;i++)
+   {
+       cin>>l;
+       tail->next=new Node(l);
+       tail=tail->next;
+       
+   }
+   Solution ob;
+   head=ob.function_name();
+   printlist(head);
+   cout<<endl;
+   
+   return 0;
+}
+------------------------------------------*/
