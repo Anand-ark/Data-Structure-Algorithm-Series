@@ -17,7 +17,7 @@ class Solution
     public:
     struct Node* function_name()
     { 
-        // return head of reversed list
+        // code here
     }
     
 };
