@@ -1,0 +1,29 @@
+Search Element in Reverse Sorted Array and return its index (if target is not present return -1)
+
+Input : arr[] = { 40, 10, 4, 3, 2}, target = 10
+Output : 1
+
+
+
+ALGORITHM :
+------------------
+Compare target with the middle element.
+If target matches with the middle element, we return the mid index.
+Else If target is greater than the mid element, then target can only lie in the left subarray before the mid element. So we recur for the left half.
+Else (target is smaller) recur for the right half.
+
+SOLUTION:
+------------
+int searchInReverseSorted(int arr[], int N, int K) 
+{
+    int left=0,right=N-1;
+    while(left<=right)
+    {
+        int mid=left+(right-left)/2;
+        if(arr[mid] == K)return mid;
+        else if(arr[mid]>K)left=mid+1;
+        else right=mid-1;
+    }
+    return -1;
+       
+}
