@@ -1,0 +1,68 @@
+There is an integer array nums sorted in ascending order (with distinct values).
+Prior to being passed to your function, nums is rotated at an unknown pivot index k (0 <= k < nums.length) 
+such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). 
+For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+
+Given the array nums after the rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+
+Example 1:
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+
+Example 2:
+Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1
+
+Example 3:
+Input: nums = [1], target = 0
+Output: -1
+
+SOLUTION :
+-----------
+class Solution {
+public:
+    int findmin(vector<int> nums)
+    {
+        int n=nums.size();
+        int low=0;
+        int high=n-1;
+        while(low<=high)
+        {
+            //to check if array is already sorted
+            if(nums[low]<=nums[high])return low;            
+            int mid=low+(high-low)/2;
+            int prev=(mid+n-1)%n;
+            int next=(mid+1)%n;
+            if(nums[mid]<=nums[prev] && nums[mid]<=nums[next])
+            {
+                return mid;
+            }
+            else if(nums[mid]>=nums[low])low=mid+1;
+            else high=mid-1;
+        }
+        return -1;
+    }
+    int binsearch(vector<int> nums,int left, int right,int target)
+    {
+        while(left<=right)
+        {
+            int mid=(left+right)/2;
+            if(nums[mid]==target)return mid;
+            else if(nums[mid]<target)left=mid+1;
+            else right=mid-1;
+        }
+        return -1;
+    }
+    int search(vector<int>& nums, int target) 
+    {
+        int start=0;
+        int end=nums.size()-1;
+        int mid=findmin(nums);
+        int x=binsearch(nums,start,mid-1,target);
+        int y=binsearch(nums,mid,end,target);   
+        if(x==-1 and y==-1)return -1;
+        else return max(x,y);
+        
+        
+    }
+};
