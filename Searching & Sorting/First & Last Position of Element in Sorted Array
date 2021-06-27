@@ -16,8 +16,8 @@ Example 3:
 Input: nums = [], target = 0
 Output: [-1,-1]
 
-SOLUTION :
--------------
+SOLUTION : TC-> O(log N)
+-------------------------
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) 
