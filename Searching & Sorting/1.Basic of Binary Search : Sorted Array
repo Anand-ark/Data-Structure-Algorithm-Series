@@ -1,0 +1,28 @@
+Search Element in Sorted Array and return its index (if target is not present return -1)
+Input : arr[] = { 2, 3, 4, 10, 40 }, target = 10
+Output : 3
+
+
+
+ALGORITHM :
+------------------
+Compare target with the middle element.
+If target matches with the middle element, we return the mid index.
+Else If target is greater than the mid element, then target can only lie in the right half subarray after the mid element. So we recur for the right half.
+Else (target is smaller) recur for the left half.
+
+SOLUTION:
+------------
+int searchInSorted(int arr[], int N, int K) 
+{
+    int left=0,right=N-1;
+    while(left<=right)
+    {
+        int mid=left+(right-left)/2;
+        if(arr[mid] == K)return mid;
+        else if(arr[mid]>K)right=mid-1;
+        else left=mid+1;
+    }
+    return -1;
+       
+}
