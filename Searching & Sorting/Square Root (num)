@@ -1,0 +1,30 @@
+Given an integar X. Compute and return the square root of X.
+
+If X is not a perfect square, return floor(sqrt(X)).
+Note : DO NOT USE SQRT FUNCTION FROM STANDARD LIBRARY
+
+SOLUTION :
+------------
+class Solution {
+public:
+    int mySqrt(int x) 
+    {
+        long long int low=0;
+        long long int high=x;
+        if(x==1)return 1;
+        int ans=0;
+        while(low<=high)
+        {
+            long long int mid=(low+high)/2;
+            if(mid*mid==x)return mid;
+            else if(mid*mid<x)
+            {
+                low=mid+1;
+                ans=mid;
+            }
+            else high=mid-1;
+        }
+        return ans;
+        
+    }
+};
