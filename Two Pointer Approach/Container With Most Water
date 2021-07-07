@@ -1,0 +1,76 @@
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the 
+two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container 
+contains the most water. Notice that you may not slant the container.
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. 
+In this case, the max area of water (blue section) the container can contain is 49.
+
+Example 2:
+Input: height = [1,1]
+Output: 1
+
+Example 3:
+Input: height = [4,3,2,1,4]
+Output: 16
+
+Example 4:
+Input: height = [1,2,1]
+Output: 2
+
+
+APPROACH 1: TC -> O(N^2)
+--------------------------
+Create a nested loop, the outer loop traverses the array from 0 to end (index of this loop is i).
+The inner loop traverses the array from i + 1 to end (index of this loop is j).
+Find the water that can be contained in the container with height of boundaries as array[i] and array[j], 
+i.e area = (j – i)* min(array[i],array[j]), if this area is greater than current maximum, update the current maximum
+
+APPROACH 2:TC -> O(N)
+----------------------
+Keep two index, first = 0 and last = n-1 and a value max_area that stores the maximum area.
+Update the max_area with maximum of max_area and min(array[first] , array[last])*(last-first)
+if the value at array[first] is greater the array[last] then update last as last – 1 else update first as first + 1
+
+SOLUTION:APPROACH 1
+-------------------
+class Solution {
+public:
+    int maxArea(vector<int>& height) 
+    {
+        int n=height.size();
+        int ans=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                int mx=min(height[i],height[j])*(j-i);
+                ans=max(ans,mx);
+            }
+        }
+        return ans;
+        
+    }
+};
+
+
+SOLUTION:APPROACH 2
+-------------------
+class Solution {
+public:
+    int maxArea(vector<int>& height) 
+    {
+        int n=height.size();
+        int left=0,right=n-1;
+        int ans=INT_MIN;
+        while(left<=right)
+        {
+            int mn=min(height[left],height[right])*(right-left);
+            ans=max(mn,ans);
+            if(height[left]<height[right])left++;
+            else right--;
+        }
+        return ans;
+    }
+};
