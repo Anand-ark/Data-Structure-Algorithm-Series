@@ -1,0 +1,65 @@
+Given an array of distinct elements. The task is to find triplets in the array whose sum is zero.
+
+Examples : 
+
+Input : arr[] = {0, -1, 2, -3, 1}
+Output : (0 -1 1), (2 -3 1)
+Explanation :
+The triplets with zero sum are
+0 + -1 + 1 = 0 and 2 + -3 + 1 = 0  
+
+Input : arr[] = {1, -2, 1, 0, 5}
+Output : 1 -2  1
+Explanation : The triplets with zero sum is
+1 + -2 + 1 = 0   
+
+METHOD 1: (3 LOOPS ) Time Complexity -> O(N^3), Space Complexity -> O(1)
+--------------------------------------------------------------------------
+This approach runs three loops and check one by one that sum of three elements is zero or not. 
+If the sum of three elements is zero then print elements otherwise print not found.
+
+METHOD 2: (USING Hashing)  Time Complexity -> O(N^2), Space Complexity -> O(N)
+--------------------------------------------------------------------------------
+The second method uses the process of Hashing to arrive at the result and is solved at a lesser time of O(N^2). 
+This involves traversing through the array. For every element arr[i], find a pair with sum “-arr[i]”. 
+This problem reduces to pair sum and can be solved in O(n) time using hashing.
+
+METHOD 3: (Using Two Pointer) Time Complexity -> O(N^2), Space Complexity -> O(1)
+----------------------------------------------------------------------------------
+This method uses Sorting to arrive at the correct result and is solved in O(n2) time. 
+For every element check that there is a pair whose sum is equal to the negative value of that element.
+
+SOLUTION : METHOD 3:
+----------------------
+vector<vector<int> > Solution::threeSum(vector<int> &A) 
+{
+    int n=A.size();
+    sort(A.begin(),A.end());
+    long long sum=0;
+    vector<vector<int>>ans;
+    for(int i=0;i<n-2;i++)
+    {
+        if(i>0 and A[i]==A[i-1])continue;
+        int left=i+1;
+        int right=n-1;
+        while(left<right)
+        {
+            sum= (long long )A[left]+A[right]+A[i];
+            if(sum==0)
+            {
+                vector<int>triplet(3,0);
+                triplet[0]=A[i];
+                triplet[1]=A[left];
+                triplet[2]=A[right];
+                ans.push_back(triplet);
+                left++;
+                right--;
+                while(left<right and A[left]==triplet[1])left++;
+                while(left<right and A[right]==triplet[2])right--;
+            }
+            else if(sum<0)left++;
+            else right--
+        }
+    }
+    return ans;
+}
