@@ -1,0 +1,31 @@
+Given a string A and integer B, remove all consecutive same characters that have length exactly B.
+
+Input 1:
+A = "aabcd"
+B = 2
+Output : bcd
+
+Input 2:
+A = "aabbccd"
+B = 2
+Output : d
+
+SOLUTION :
+-----------
+string Solution::solve(string A, int B) 
+{
+    int n=A.length();
+    string ans="";
+    for(int i=0;i<n;i++)
+    {
+        int count=1;
+        while(A[i]==A[i+1])
+        {
+            count++;
+            i++;
+        }
+        if(count==B)continue;
+        else ans+=A[i];
+    }
+    return ans;
+}
