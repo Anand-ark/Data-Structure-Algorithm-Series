@@ -1,0 +1,56 @@
+Given a string s, count special substrings in it. A Substring of S is said to be special if either of the following properties is satisfied. 
+
+It starts with a vowel and ends with a consonant.
+It starts with a consonant and ends with a vowel.
+
+Examples:  
+Input : S = "aba"
+Output : 2
+Substrings of S are : a, ab, aba, b, ba, a 
+Out of these only 'ab' and 'ba' satisfy the
+condition for special Substring. So the 
+answer is 2.
+
+Input : S = "adceba"
+Output : 9
+
+SOLUTION :
+------------
+bool vowel_pres(char c)
+{
+    if(c=='a' or c=='e' or c=='i' or c=='o' or c=='u')return true;
+    return false;
+}
+int Solution::solve(string A) 
+{
+    int MOD=1e9+7;
+    int n=A.length();
+    vector<int>vowel(n+1,0);
+    vector<int>cons(n+1,0);
+    if(vowel_pres(A[n-1])==1)vowel[n-1]=1;
+    else cons[n-1]=1;
+    for(int i=n-2;i>=0;i--)
+    {
+        if(vowel_pres(A[i])==true)
+        {
+            vowel[i]=vowel[i+1]+1;
+            cons[i]=cons[i+1];
+        }
+        else
+        {
+            vowel[i]=vowel[i+1];
+            cons[i]=cons[i+1]+1;            
+        }
+    }
+    long long ans=0;
+    for(int i=0;i<n;i++)
+    {
+        if(vowel_pres(A[i])==true)
+        {
+            ans+=cons[i+1];
+        }
+        else ans+=vowel[i+1];
+    }
+    return ans%MOD;
+
+}
