@@ -41,7 +41,7 @@ int Solution::solve(string A)
         }
         else
         {
-            if(i!=0)i=lps[i-1];
+            if(i!=0)i=0;
             else
             {
                 lps[j]=0;
