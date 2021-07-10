@@ -1,0 +1,56 @@
+Given an string A. The only operation allowed is to insert  characters in the beginning of the string.
+Find how many minimum characters are needed to be inserted to make the string a palindrome string.
+
+Input Format
+
+The only argument given is string A
+
+Return the minimum characters that are needed to be inserted to make the string a palindrome string.
+
+Input 1:
+    A = "AACECAAAA"
+Output 1:
+    2
+    
+Explanation 1:
+Insert 'A' at beginning, string becomes: "AAACECAAAA".
+Insert 'A' at beginning, string becomes: "AAAACECAAAA".
+
+
+APPROACH : 
+-----------
+Find the longest prefix which is also suffix
+
+SOLUTION : 
+------------
+int Solution::solve(string A) 
+{
+    int n=A.length();
+    string str=A;
+    reverse(str.begin(),str.end());
+    string s=A+str;
+    vector<int>lps(s.length(),0);
+    int i=0,j=1;
+    while(j<s.length())
+    {
+        if(s[i]==s[j])
+        {
+            lps[j]=i+1;
+            i++;
+            j++;
+        }
+        else
+        {
+            if(i!=0)i=lps[i-1];
+            else
+            {
+                lps[j]=0;
+                j++;
+            }
+        }
+    }
+    int ans=n-lps[(s.length()-1)];
+    if(ans<0)return 0; //if string is already palindrome
+    else return ans;
+
+}
