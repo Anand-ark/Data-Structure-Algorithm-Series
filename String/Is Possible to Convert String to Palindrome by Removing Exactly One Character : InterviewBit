@@ -1,0 +1,28 @@
+Given a string A consisting only of lowercase characters, we need to check whether it is possible to make this string a palindrome 
+after removing exactly one character from this.
+
+If it is possible then return 1 else return 0.
+
+SOLUTION :
+-------------
+int Solution::solve(string A) 
+{
+    int n=A.length()-1;
+    int i=0,j=n;
+    int count=0;
+    while(i<=j)
+    {
+        if(count>1)return 0;
+        if(A[i]!=A[j])
+        {
+            count++;
+            i++;
+            continue;
+        }
+        i++;
+        j--;
+
+    }
+    return 1;
+
+}
