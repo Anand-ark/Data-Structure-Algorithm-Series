@@ -1,0 +1,37 @@
+Given an input string s, reverse the order of the words.
+
+A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+
+Return a string of the words in reverse order concatenated by a single space.
+
+Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+
+Example 1:
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+
+Example 2:
+Input: s = "  hello world  "
+Output: "world hello"
+Explanation: Your reversed string should not contain leading or trailing spaces.
+
+SOLUTION :
+------------
+string Solution::solve(string A) 
+{
+    int n=A.length();
+    int i=n-1;
+    string ans;
+    while(i>=0)
+    {
+        while(i>=0 and A[i]==' ')i--;
+        int j=i;
+        if(i<0)break;
+        while(i>=0 and A[i]!=' ')i--;
+        if(ans.length()==0)ans=A.substr(i+1,j-i);
+        else ans=ans+" "+A.substr(i+1,j-i);
+
+
+    }   
+    return ans;
+}
