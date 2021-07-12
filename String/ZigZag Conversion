@@ -1,0 +1,36 @@
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: 
+(you may want to display this pattern in a fixed font for better legibility)
+
+P   A   H   N
+A P L S I I G
+Y   I   R
+And then read line by line: "PAHNAPLSIIGYIR"
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+SOLUTION :
+-----------
+class Solution {
+public:
+    string convert(string s, int numRows) 
+    {
+        int n=s.length();
+        if(numRows==1)return s;
+        vector<string>ans(numRows);
+        bool down=true;
+        int row=0;
+        for(int i=0;i<n;i++)
+        {
+            ans[row].push_back(s[i]);
+            if(row==numRows-1)down=false;
+            else if(row==0)down=true;
+            if(down==true)row++;
+            else row--;
+        }
+        string res="";
+        for(int i=0;i<numRows;i++)res+=ans[i];
+        return res;
+        
+        
+    }
+};
