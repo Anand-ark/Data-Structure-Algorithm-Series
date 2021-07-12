@@ -1,0 +1,47 @@
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+
+Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+ 
+
+Example 1:
+Input: num1 = "2", num2 = "3"
+Output: "6"
+
+Example 2:
+Input: num1 = "123", num2 = "456"
+Output: "56088"
+
+SOLUTION : Time Complexity -> O(N1 * N2 )
+-------------------------------------------
+class Solution {
+public:
+    string multiply(string num1, string num2) 
+    {
+        reverse(num1.begin(),num1.end());
+        reverse(num2.begin(),num2.end());
+        int n1=num1.length();
+        int n2=num2.length();
+        string ans(n1+n2,'0');
+        for(int i=0;i<n1;i++)
+        {
+            int carry=0;
+            for(int j=0;j<n2;j++)
+            {
+                int sum=(num1[i]-'0')*(num2[j]-'0')+carry+(ans[i+j]-'0');
+                carry=sum/10;
+                ans[i+j]=sum%10+'0';
+            }
+            if(carry)ans[i+n2]=carry+'0';
+        }
+        reverse(ans.begin(),ans.end());
+        int len=ans.length();
+        int k=0;
+        while(ans[k]=='0' and k<len)
+        {
+            k++;
+        }
+        if(k==len)return ans.substr(1,1);//special case if only "00" is present
+        else return ans.substr(k,len-k);
+    }
+};
