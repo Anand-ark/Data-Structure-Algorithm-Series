@@ -1,3 +1,4 @@
+/*
 Given a Singly linked list, check if the linked list has loop or not.
 
 METHOD 1: (Using Hashing)
@@ -12,7 +13,7 @@ Traverse linked list using two pointers.
 Move one pointer(slow_p) by one and another pointer(fast_p) by two.
 If these pointers meet at the same node then there is a loop. If pointers do not meet then linked list doesn’t have a loop.
 Time Complexity : O(N) , Space Complexity : O(1)
-
+*/
 SOLUTION : METHOD 2: (Floyd Cycle Finding Algorithm)
 -----------------------------------------------------
 DETECT LOOP IN LINKED LIST
