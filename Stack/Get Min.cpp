@@ -13,76 +13,43 @@ int getMin() retrieves the minimum element in the stack.
 
 SOLUTION :
 -----------
-class MinStack {
-public:
-    /** initialize your data structure here. */
-    stack<long long int>s;
-    int mn=INT_MAX;
-    MinStack() 
-    {
-        
-        
-    }
-    
-    void push(int x) 
-    {
-        if(s.size()==0)
-        {
-            s.push(x);
-            mn=x;
-        }
-        else
-        {
-            if(x>=mn)s.push(x);
-            else if(x<mn)
-            {
-                s.push(2*(long long)x-mn);
-                mn=x;
-            }
-        }
-    }
-    
-    void pop() 
-    {
-        if(s.size()==0)return ;
-        else
-        {
-            if(s.top()>=mn)s.pop();
-            else if(s.top()<mn)
-            {
-                mn=2*(long long)mn-s.top();
-                s.pop();
-            }
-        }
-        
-    }
-    
-    int top() 
-    {
-       if(s.size()==0)return -1;
-       else
-       {
-           if(s.top()>=mn)return s.top();
-           
-       }
-        return mn;
-        
-    }
-    
-    int getMin() 
-    {
-        if(s.size()==0)return -1;
-        return mn;
-        
-        
-    }
-};
+int min_num;
+stack<int> s;
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack* obj = new MinStack();
- * obj->push(x);
- * obj->pop();
- * int param_3 = obj->top();
- * int param_4 = obj->getMin();
- */
+MinStack::MinStack() 
+{
+    s = stack<int>();
+}
+
+void MinStack::push(int x) 
+{
+    if(s.empty()) min_num = x;
+    
+    if(x >= min_num)  s.push(x);
+    else 
+    {
+        s.push(2 * x - min_num);
+        min_num = x;
+    }
+}
+
+void MinStack::pop() {
+    if(s.empty()) return ;
+    
+    if(s.top() <= min_num)  min_num = 2 * min_num - s.top();
+    s.pop();
+}
+
+int MinStack::top() 
+{
+    if(s.empty()) return -1;
+    
+    if(s.top() < min_num) return min_num;
+    else return s.top();
+}
+
+int MinStack::getMin() 
+{
+    if(s.empty()) return -1;
+    return min_num;
+}
