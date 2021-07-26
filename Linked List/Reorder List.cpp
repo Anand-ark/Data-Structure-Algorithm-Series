@@ -1,3 +1,4 @@
+/*
 Given a linked list. arrange the linked list in manner of alternate first and last element.
 
 Examples: 
@@ -45,7 +46,7 @@ void arrange(struct Node* head)
         temp = temp->next; // increase temp
     }
 }
-
+*/
 
 METHOD 2:
 Find the middle point using tortoise and hare method.
