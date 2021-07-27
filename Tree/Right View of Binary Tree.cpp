@@ -34,6 +34,29 @@ public:
 ------------------
   BFS APPROACH 
 ------------------
-
-
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) 
+    {
+        if(root==NULL)return{};
+        vector<int>ans;
+        TreeNode*  curr;
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int l=q.size();
+            for(int i=0;i<l;i++)
+            {
+                curr=q.front();
+                q.pop();
+                if(i==l-1)ans.push_back(curr->val);
+                if(curr->left!=NULL)q.push(curr->left);
+                if(curr->right!=NULL)q.push(curr->right);
+            }
+        }
+        return ans;
+        
+    }
+};
 
