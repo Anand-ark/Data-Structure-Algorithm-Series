@@ -36,8 +36,8 @@ class Solution {
 public:
     bool isSubtree(TreeNode* s, TreeNode* t) 
     {
-        if(s==NULL and t!=NULL)return false;
-        if(s!=NULL and t==NULL)return false;
+        if(s==NULL and t==NULL)return true;
+        if(s==NULL or t==NULL)return false;
         if(isSameTree(s,t)==true)return true;
         bool l=false,r=false;
         l=isSubtree(s->left,t);
@@ -46,9 +46,8 @@ public:
     }
     bool isSameTree(TreeNode* s, TreeNode* t)
     {
-        if(s==NULL and t!=NULL)return false;
-        if(s!=NULL and t==NULL)return false;
         if(s==NULL and t==NULL)return true;
+        if(s==NULL or t==NULL)return false;
         bool l=false;
         bool r=false;
         if(s->val==t->val)
