@@ -22,8 +22,8 @@ Output: 1
 Explanation: Row 1 contains 2 1's (0-based
 indexing).
 */
-SOLUTION :
------------
+SOLUTION : Time Complexity : O(M log N)
+----------------------------------------
 class Solution{
 public:
     int find(vector<int> nums,int left,int right)
