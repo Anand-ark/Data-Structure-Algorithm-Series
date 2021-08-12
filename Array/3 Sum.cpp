@@ -1,3 +1,29 @@
+/*
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and 
+nums[i] + nums[j] + nums[k] == 0.
+
+Notice that the solution set must not contain duplicate triplets.
+
+Example 1:
+
+Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Example 2:
+
+Input: nums = []
+Output: []
+Example 3:
+
+Input: nums = [0]
+Output: []
+*/
+APPROACH 1 :  Time Complexity -> O(N^3) , Space Complexity ->O(1)
+------------------------------------------------------------------
+Create three nested loop first loop runs from start to end (loop counter i), second loop runs from i+1 to end (loop counter j) and third loop 
+runs from j+1 to end (loop counter k) The counter of these loops represents the index of 3 elements of the triplets.
+    
+APPROACH 2 :  Time Complexity -> O(N^2) , Space Complexity ->O(1)
+------------------------------------------------------------------
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) 
