@@ -34,6 +34,11 @@ Time Complexity :  O(N) , Space Complexity : O(1)
 SOLUTION : METHOD 3 
 class Solution {
 public:
+    void swap(int& i, int& j){
+        i = i^j;
+        j = i^j;
+        i = i^j;
+    }
     void solve(vector<int>& nums,int left, int right)
     {
         while(left < right )
