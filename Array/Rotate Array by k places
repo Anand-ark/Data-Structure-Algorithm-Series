@@ -36,13 +36,11 @@ class Solution {
 public:
     void solve(vector<int>& nums,int left, int right)
     {
-        int i=left;
-        int j=right;
-        while(i<nums.size() and j>i)
+        while(left < right )
         {
-            swap(nums[i],nums[j]);
-            i++;
-            j--;
+            swap(nums[left],nums[right]);
+            left++;
+            right--;
         }
     }
     void rotate(vector<int>& nums, int k) 
